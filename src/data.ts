@@ -105,6 +105,24 @@ export const trailerOptions: Record<string, { name: string; image: string }[]> =
 export const kitchenPrices = raw.service_profile.pricing.size_surcharges
 export const refrigeratorPrices = raw.service_profile.pricing.temporary_refrigerator_trailer.size_prices
 
+export const restroomRentalPeriods = [
+  { key: '1_6_days', label: '1–6 days' },
+  { key: '8_14_days', label: '8–14 days' },
+  { key: '15_days_1_month', label: '15 days–1 month' },
+  { key: 'more_than_3_months', label: 'More than 3 months' }
+] as const
+
+export type RestroomRentalPeriod = (typeof restroomRentalPeriods)[number]['key']
+export type RestroomPrice = number | { min: number; max: number } | null
+
+export const restroomPricing: { id: string; name: string; prices: Record<RestroomRentalPeriod, RestroomPrice> }[] = [
+  { id: '13ft-3-stalls', name: '13ft Luxury Shower-Restroom Combination Trailer (3 Stalls)', prices: { '1_6_days': 2995, '8_14_days': 2995, '15_days_1_month': 3995, 'more_than_3_months': { min: 2495, max: 3995 } } },
+  { id: '22ft-6-stalls', name: '22ft Luxury Shower-Restroom Combination Trailer (6 Stalls)', prices: { '1_6_days': 4995, '8_14_days': 4995, '15_days_1_month': 5995, 'more_than_3_months': { min: 4995, max: 5995 } } },
+  { id: '30ft-8-stalls', name: '30ft Luxury Shower-Restroom Combination Trailer (8 Stalls)', prices: { '1_6_days': 3995, '8_14_days': 3995, '15_days_1_month': { min: 3995, max: 5995 }, 'more_than_3_months': { min: 3995, max: 5995 } } },
+  { id: '3-stalls-1-ada', name: 'Luxury Shower-Restroom Combination Trailer (3 Stalls + 1 ADA)', prices: { '1_6_days': null, '8_14_days': null, '15_days_1_month': null, 'more_than_3_months': null } },
+  { id: '8-stalls-1-ada', name: 'Luxury Shower-Restroom Combination Trailer (8 Stalls + 1 ADA)', prices: { '1_6_days': 5995, '8_14_days': 6995, '15_days_1_month': 7995, 'more_than_3_months': { min: 5995, max: 6995 } } }
+]
+
 export type InventoryDetailPage = {
   slug: string
   name: string

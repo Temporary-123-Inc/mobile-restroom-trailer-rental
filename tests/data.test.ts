@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cities, citiesForState, cityPath, inventoryDetailPages, locationDescription, locationH1, restroomFamilyServices, routes, services, site, statePages, supportingServices } from '../src/data'
+import { cities, citiesForState, cityPath, inventoryDetailPages, locationDescription, locationH1, restroomFamilyServices, restroomPricing, restroomRentalPeriods, routes, services, site, statePages, supportingServices } from '../src/data'
 
 describe('authoritative site data', () => {
   it('includes all states, cities, and nine services', () => {
@@ -22,6 +22,14 @@ describe('authoritative site data', () => {
     expect(description).toContain('mobile restroom trailers in Austin, Texas')
     expect(description).toContain('sleeper trailers, restroom and shower trailers, laundry trailers, and handwashing trailers')
     expect(description).not.toMatch(/kitchen|dishwash|refrigerat/i)
+  })
+  it('preserves every supplied restroom calculator price and blank', () => {
+    expect(restroomRentalPeriods.map((period) => period.label)).toEqual(['1–6 days', '8–14 days', '15 days–1 month', 'More than 3 months'])
+    expect(restroomPricing).toHaveLength(5)
+    expect(restroomPricing[0].prices).toEqual({ '1_6_days': 2995, '8_14_days': 2995, '15_days_1_month': 3995, 'more_than_3_months': { min: 2495, max: 3995 } })
+    expect(restroomPricing[2].prices['15_days_1_month']).toEqual({ min: 3995, max: 5995 })
+    expect(Object.values(restroomPricing[3].prices)).toEqual([null, null, null, null])
+    expect(restroomPricing[4].prices).toEqual({ '1_6_days': 5995, '8_14_days': 6995, '15_days_1_month': 7995, 'more_than_3_months': { min: 5995, max: 6995 } })
   })
   it('links every state to every matching city slug', () => {
     for (const state of statePages) {
