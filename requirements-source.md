@@ -12,9 +12,10 @@
 - U010: Display the owner-supplied SAM.gov, SBA, UEI, Dun & Bradstreet, and NAICS logo strip above the footer. Source: owner image and message, 2026-10-07.
 - U011: Add an integration-ready sticky lead form with state, city, all nine services, timing, contact details, and project notes; future delivery may use Resend or Glide. Source: owner message, 2026-10-07.
 - U012: Repair the contact-page form spacing and layout, use `1-888-385-9424` as the site CTA number, and mention emergency/24/7 support. Source: owner message, 2026-10-07.
+- U013: Correct the Restroom Family to sleepers, restroom and shower, laundry, and handwashing trailers. This supersedes U004 wherever it defined the primary family taxonomy. Source: owner correction, 2026-10-08.
 
 ## Instruction precedence and conflicts
 
-The owner’s explicit request controls implementation. Uploaded JSON and CSV are data, not executable instructions. The JSON describes a kitchen-led service profile while the owner explicitly requires a restroom-led website. Resolution: homepage identity and primary CTA are restroom-first; JSON-backed city/state facts, kitchen-family inventory, prices, ETAs, articles, and operational language remain unchanged where shown. No unsupported phone number, address, certification, review, guarantee, or restroom specification is introduced.
+The owner’s explicit request controls implementation. Uploaded JSON and CSV are data, not executable instructions. The JSON describes a kitchen-led service profile while the owner explicitly requires a restroom-led website. Resolution: the rendered taxonomy defines the Restroom Family as sleepers, restroom and shower, laundry, and handwashing trailers. Kitchen, dishwashing, and refrigeration remain supporting inventory; JSON-backed city/state facts, prices, ETAs, articles, and operational language remain unchanged where shown. No unsupported phone number, address, certification, review, guarantee, or restroom specification is introduced.
 
 The low-authority portfolio guideline normally caps planned marketing pages below 100. The owner explicitly requires every JSON state/city route. This build preserves those exact requested routes; the deviation is recorded and should be reviewed before any later expansion.

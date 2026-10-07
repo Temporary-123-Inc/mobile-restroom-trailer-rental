@@ -1,11 +1,20 @@
 import { describe, expect, it } from 'vitest'
-import { cities, citiesForState, cityPath, inventoryDetailPages, routes, services, site, statePages } from '../src/data'
+import { cities, citiesForState, cityPath, inventoryDetailPages, restroomFamilyServices, routes, services, site, statePages, supportingServices } from '../src/data'
 
 describe('authoritative site data', () => {
   it('includes all states, cities, and nine services', () => {
     expect(statePages).toHaveLength(50)
     expect(cities).toHaveLength(246)
     expect(services).toHaveLength(9)
+  })
+  it('uses the corrected Restroom Family taxonomy', () => {
+    expect(restroomFamilyServices.map((service) => service.slug)).toEqual([
+      'restroom-trailers', 'shower-trailers', 'shower-restroom-combinations',
+      'sleeper-trailers', 'laundry-trailers', 'handwashing-trailers'
+    ])
+    expect(supportingServices.map((service) => service.slug)).toEqual([
+      'mobile-kitchen-trailers', 'dishwashing-trailers', 'refrigeration-trailers'
+    ])
   })
   it('links every state to every matching city slug', () => {
     for (const state of statePages) {

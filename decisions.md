@@ -13,3 +13,7 @@
 - Added the supplied accreditation artwork as a responsive, lazy-loaded trust strip immediately above the shared footer.
 - Added a reusable state/city/service lead form in a sticky global panel and on the contact page. Submission remains local-only until Resend or Glide is configured, and the UI says so explicitly.
 - Added `1-888-385-9424` to header, homepage, contact, footer, sticky-form, and final CTA surfaces. “24/7” is limited to emergency contact support; the site still requires confirmation for inventory, delivery, dispatch, setup, and response timing.
+
+## 2026-10-08
+
+- Applied the owner’s corrected taxonomy site-wide: the Restroom Family is sleepers, restroom and shower, laundry, and handwashing trailers. Kitchen, dishwashing, and refrigeration are displayed as supporting inventory without altering the supplied location JSON or its pricing and ETA facts.

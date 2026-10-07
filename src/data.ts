@@ -48,16 +48,19 @@ export const cityPath = (city: City) => `/${slugify(city.state)}/${city.page_lay
 export const statePath = (state: string) => `/service-areas/${slugify(state)}/`
 
 export const services = [
-  { slug: 'mobile-kitchen-trailers', name: 'Mobile kitchen trailers', family: 'Kitchen family', image: '/images/mobile-kitchen.webp', description: 'A commercial cooking workspace for restaurant continuity, led by a stove, oven, essential cooking utensils, preparation space, and an approved equipment package.' },
-  { slug: 'dishwashing-trailers', name: 'Dishwashing trailers', family: 'Kitchen family', image: '/images/dishwashing.webp', description: 'Commercial dishwashing capacity with connections and drainage reviewed during site preparation.' },
-  { slug: 'refrigeration-trailers', name: 'Refrigeration trailers', family: 'Kitchen family', image: '/images/refrigeration.webp', description: 'Separate temporary cold storage with site-wide pricing that is not reduced by city ETA discounts.' },
-  { slug: 'shower-trailers', name: 'Shower trailers', family: 'Supporting facility', image: '/images/shower.webp', description: 'A supporting hygiene facility available by request, with configuration and site requirements confirmed in the quote.' },
-  { slug: 'restroom-trailers', name: 'Restroom trailers', family: 'Supporting facility', image: '/images/restroom.webp', description: 'Temporary bathroom facilities available by request for sites that need support beyond the kitchen family.' },
-  { slug: 'shower-restroom-combinations', name: 'Shower & restroom combinations', family: 'Supporting facility', image: '/images/shower-restroom.webp', description: 'Combined bathroom and shower facilities reviewed against the project site, access, utilities, and availability.' },
-  { slug: 'sleeper-trailers', name: 'Sleeper & bunkbed trailers', family: 'Supporting facility', image: '/images/sleeper.webp', description: 'Temporary sleeping facilities shown as a supporting category; final fit and availability are quote-based.' },
-  { slug: 'laundry-trailers', name: 'Laundry trailers', family: 'Supporting facility', image: '/images/laundry.webp', description: 'Mobile laundry facilities that can support longer projects, subject to site review and availability.' },
-  { slug: 'handwashing-trailers', name: 'Handwashing trailers', family: 'Supporting facility', image: '/images/handwashing.webp', description: 'Handwashing capacity that can be added when the approved site plan calls for a separate sanitation station.' }
+  { slug: 'restroom-trailers', name: 'Restroom trailers', family: 'Restroom Family', image: '/images/restroom.webp', description: 'Temporary restroom facilities available by request, with configuration, site requirements, and current availability confirmed in the quote.' },
+  { slug: 'shower-trailers', name: 'Shower trailers', family: 'Restroom Family', image: '/images/shower.webp', description: 'Temporary shower facilities available by request, with configuration and site requirements confirmed in the quote.' },
+  { slug: 'shower-restroom-combinations', name: 'Restroom & shower combinations', family: 'Restroom Family', image: '/images/shower-restroom.webp', description: 'Combined restroom and shower facilities reviewed against the project site, access, utilities, and availability.' },
+  { slug: 'sleeper-trailers', name: 'Sleeper trailers', family: 'Restroom Family', image: '/images/sleeper.webp', description: 'Temporary sleeping facilities in the Restroom Family; final fit and availability are quote-based.' },
+  { slug: 'laundry-trailers', name: 'Laundry trailers', family: 'Restroom Family', image: '/images/laundry.webp', description: 'Mobile laundry facilities in the Restroom Family that can support longer projects, subject to site review and availability.' },
+  { slug: 'handwashing-trailers', name: 'Handwashing trailers', family: 'Restroom Family', image: '/images/handwashing.webp', description: 'Handwashing capacity in the Restroom Family for approved site plans that call for a separate sanitation station.' },
+  { slug: 'mobile-kitchen-trailers', name: 'Mobile kitchen trailers', family: 'Supporting inventory', image: '/images/mobile-kitchen.webp', description: 'A supporting commercial cooking workspace with a stove, oven, essential cooking utensils, preparation space, and an approved equipment package.' },
+  { slug: 'dishwashing-trailers', name: 'Dishwashing trailers', family: 'Supporting inventory', image: '/images/dishwashing.webp', description: 'Supporting commercial dishwashing capacity with connections and drainage reviewed during site preparation.' },
+  { slug: 'refrigeration-trailers', name: 'Refrigeration trailers', family: 'Supporting inventory', image: '/images/refrigeration.webp', description: 'Supporting temporary cold storage with site-wide pricing that is not reduced by city ETA discounts.' }
 ] as const
+
+export const restroomFamilyServices = services.filter((service) => service.family === 'Restroom Family')
+export const supportingServices = services.filter((service) => service.family !== 'Restroom Family')
 
 export const serviceH1: Record<string, string> = {
   'mobile-kitchen-trailers': 'Mobile Kitchen Trailer Rentals for Temporary Commercial Food Service',
@@ -111,7 +114,7 @@ export type InventoryDetailPage = {
 
 const inventoryPage = (slug: string, name: string, family: string, parentService: string, image: string): InventoryDetailPage => ({
   slug, name, family, parentService, image,
-  description: `${name} is presented as a temporary rental option within the ${family.toLowerCase()} inventory. Configuration, utilities, placement, access, rental term, delivery, setup, and current availability are confirmed through the project quote.`
+  description: `${name} is presented as a temporary rental option. Configuration, utilities, placement, access, rental term, delivery, setup, and current availability are confirmed through the project quote.`
 })
 
 export const inventoryDetailPages: InventoryDetailPage[] = [

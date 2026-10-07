@@ -12,9 +12,9 @@ const updated = '2026-10-06'
 const escape = (value: string) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;')
 
 function metadata(path: string) {
-  if (path === '/') return { title: 'Mobile Restroom Trailer Rentals | Mobile Restroom Trailer Rental', description: 'Nationwide mobile restroom trailer rentals for restaurant continuity during phased renovations, with dishwashing, refrigeration, and supporting facility options.' }
+  if (path === '/') return { title: 'Mobile Restroom Trailer Rentals | Mobile Restroom Trailer Rental', description: 'Nationwide Restroom Family rentals including sleepers, restroom and shower, laundry, and handwashing trailers, with supporting facility options.' }
   if (path === '/service-areas/' || path === '/Locations.html') return { title: 'Nationwide Mobile Kitchen Trailer Rental Service Areas | Mobile Restroom Trailer Rental', description: 'Browse 50 state guides and 246 city pages for mobile restroom trailer pricing, planned delivery ranges, service hours, and availability.' }
-  if (path === '/services/') return { title: 'Temporary Facility Rental Inventory | Mobile Restroom Trailer Rental', description: 'Explore nine temporary facility categories led by mobile kitchens, dishwashing trailers, and refrigeration trailers.' }
+  if (path === '/services/') return { title: 'Temporary Facility Rental Inventory | Mobile Restroom Trailer Rental', description: 'Explore nine temporary facility categories led by sleepers, restroom and shower, laundry, and handwashing trailers.' }
   if (path === '/rental-calculator/') return { title: 'Mobile Restroom Trailer Starting Price Estimator | Mobile Restroom Trailer Rental', description: 'Build a location-specific mobile restroom trailer starting estimate using published city pricing and planning ETA data.' }
   if (path === '/contact-us/') return { title: 'Request Mobile Restroom Trailer Availability | Mobile Restroom Trailer Rental', description: 'Prepare the project details needed for a location-specific mobile restroom trailer rental plan and quote.' }
   const bits = path.split('/').filter(Boolean)
