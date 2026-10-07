@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowRight, Check, ChevronDown, ChevronLeft, ChevronRight, Clock3, MapPin, Menu, PhoneCall, Ruler, X } from 'lucide-react'
-import { cities, citiesForState, cityBySlug, cityPath, inventoryDetailBySlug, inventoryDetailPages, refrigeratorPrices, restroomFamilyServices, serviceH1, services, site, slugify, stateBySlug, statePages, statePath, supportingServices, trailerOptions, type City, type InventoryDetailPage } from './data'
+import { cities, citiesForState, cityBySlug, cityPath, inventoryDetailBySlug, inventoryDetailPages, locationDescription, locationH1, refrigeratorPrices, restroomFamilyServices, serviceH1, services, site, slugify, stateBySlug, statePages, statePath, supportingServices, trailerOptions, type City, type InventoryDetailPage } from './data'
 
 const money = (value: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value)
 const currentPath = () => typeof window === 'undefined' ? '/' : window.location.pathname
@@ -73,7 +73,7 @@ function Carousel({ label = 'Restroom Family inventory' }: { label?: string }) {
 }
 
 function Hero({ h1, description, price, eta, availability, variation = 0, locationPage = false }: { h1: string; description: string; price: number; eta: string; availability: string; variation?: number; locationPage?: boolean }) {
-  return <section className={`hero variation-${variation + 1}${locationPage ? ' location-hero' : ''}`}><div className="shell hero-grid"><div className="hero-copy"><span className="eyebrow">Restroom Family availability</span><h1>{h1}</h1><p>{description}</p><div className="hero-actions"><Link className="button primary" href="/contact-us/">Request availability <ArrowRight/></Link><Link className="text-link" href="/rental-calculator/">Build a starting estimate</Link></div></div><div className="hero-side"><div className="status-row"><span className="status"><i/> {availability}</span></div><div className="metric-grid"><div><small>Starting at</small><strong>{money(price)}</strong><span>20 ft kitchen</span></div><div><small>Planning ETA</small><strong>{eta}</strong><span>route-dependent</span></div></div><Carousel/></div></div></section>
+  return <section className={`hero variation-${variation + 1}${locationPage ? ' location-hero' : ''}`}><div className="shell hero-grid"><div className="hero-copy"><span className="eyebrow">Restroom Family availability</span><h1>{h1}</h1><p>{description}</p><div className="hero-actions"><Link className="button primary" href="/contact-us/">Request availability <ArrowRight/></Link><Link className="text-link" href={locationPage ? '/services/restroom-trailers/' : '/rental-calculator/'}>{locationPage ? 'Explore restroom trailers' : 'Build a starting estimate'}</Link></div></div><div className="hero-side"><div className="status-row"><span className="status"><i/> {availability}</span></div><div className="metric-grid">{locationPage ? <div><small>Rental terms</small><strong>Short or long term</strong><span>quote-based availability</span></div> : <div><small>Starting at</small><strong>{money(price)}</strong><span>location estimate</span></div>}<div><small>Planning ETA</small><strong>{eta}</strong><span>route-dependent</span></div></div><Carousel/></div></div></section>
 }
 
 function HomeHero() {
@@ -128,36 +128,37 @@ function Calculator({ compact = false }: { compact?: boolean }) {
 function PageIntro({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) { return <section className="page-intro"><div className="shell"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{text}</p></div></section> }
 
 function ServiceAreas() {
-  return <Layout><PageIntro eyebrow="50 state guides · 246 city guides" title="Service areas built for location-specific planning." text="Every state page links to all of its cities, and every city guide preserves its own pricing, ETA, availability, service hours, article, and nearby-area data."/><section className="section"><div className="shell all-states">{statePages.map((state) => <article key={state.state}><Link href={statePath(state.state)}><span>{String(state.city_count).padStart(2, '0')} cities</span><h2>{state.state}</h2><p>Temporary mobile kitchen trailer rental</p><b>Open state guide <ArrowRight/></b></Link></article>)}</div></section><FinalCTA/></Layout>
+  return <Layout><PageIntro eyebrow="50 state guides · 246 city guides" title="Mobile restroom trailer rental service areas." text="Find short-term and long-term Restroom Family rentals, including sleepers, restroom and shower trailers, laundry trailers, and handwashing trailers."/><section className="section"><div className="shell all-states">{statePages.map((state) => <article key={state.state}><Link href={statePath(state.state)}><span>{String(state.city_count).padStart(2, '0')} cities</span><h2>{state.state}</h2><p>Mobile restroom trailer rentals</p><b>Open state guide <ArrowRight/></b></Link></article>)}</div></section><FinalCTA/></Layout>
+}
+
+function RestroomFamilyOverview({ location }: { location: string }) {
+  const family = [
+    { name: 'Sleepers', slug: 'sleeper-trailers', text: 'Temporary sleeper trailers for short-term or long-term workforce accommodation needs.' },
+    { name: 'Restroom & shower', slug: 'shower-restroom-combinations', text: 'Restroom, shower, and combination trailers for temporary hygiene capacity.' },
+    { name: 'Laundry', slug: 'laundry-trailers', text: 'Laundry trailers for extended projects and temporary facilities.' },
+    { name: 'Handwashing', slug: 'handwashing-trailers', text: 'Dedicated handwashing trailers for temporary sanitation needs.' }
+  ]
+  return <section className="section equipment-plan"><div className="shell"><div className="section-head"><div><span className="eyebrow">Restroom Family rentals in {location}</span><h2>Four facility types for one temporary site plan.</h2></div><p>Choose the Restroom Family equipment that fits the project duration, occupancy, placement, utility access, and sanitation requirements.</p></div><div className="plan-grid">{family.map((item) => <article key={item.slug}><h3>{item.name}</h3><p>{item.text}</p><Link className="text-link" href={`/services/${item.slug}/`}>Explore {item.name.toLowerCase()} <ArrowRight/></Link></article>)}</div></div></section>
 }
 
 function StatePage({ stateSlug }: { stateSlug: string }) {
   const state = stateBySlug(stateSlug)
   if (!state) return <NotFound/>
   const stateCities = citiesForState(state.state)
-  return <Layout><Breadcrumbs labels={['Home', 'Service Area Pages', state.state]} hrefs={['/', '/service-areas/', statePath(state.state)]}/><Hero h1={state.h1} description={state.description} price={state.starting_price} eta="City-specific" availability="Available by request" variation={statePages.findIndex((item) => item.state === state.state) % 4} locationPage/><section className="section"><div className="shell"><div className="section-head"><div><span className="eyebrow">Every published city in {state.state}</span><h2>Choose a local planning guide.</h2></div><p>{stateCities.length} city {stateCities.length === 1 ? 'page is' : 'pages are'} available with city-specific pricing and delivery planning ranges.</p></div><div className="city-grid">{stateCities.map((city) => <Link href={cityPath(city)} key={city.city_slug}><span><MapPin/> {city.representative_city}, {city.state}</span><strong>{money(city.page_layout_data.starting_price)} start</strong><small>{city.page_layout_data.delivery_time_range.display} planning ETA</small><ArrowRight/></Link>)}</div></div></section><PriceTable/><FAQ/><FinalCTA/></Layout>
+  return <Layout><Breadcrumbs labels={['Home', 'Service Area Pages', state.state]} hrefs={['/', '/service-areas/', statePath(state.state)]}/><Hero h1={locationH1(state.state)} description={locationDescription(state.state)} price={state.starting_price} eta="City-specific" availability="Available by request" variation={statePages.findIndex((item) => item.state === state.state) % 4} locationPage/><RestroomFamilyOverview location={state.state}/><section className="section"><div className="shell"><div className="section-head"><div><span className="eyebrow">Mobile restroom rentals across {state.state}</span><h2>Choose a local Restroom Family rental guide.</h2></div><p>{stateCities.length} city {stateCities.length === 1 ? 'page is' : 'pages are'} available with location-specific availability and delivery planning ranges.</p></div><div className="city-grid">{stateCities.map((city) => <Link href={cityPath(city)} key={city.city_slug}><span><MapPin/> {city.representative_city}, {city.state}</span><strong>Restroom Family rentals</strong><small>{city.page_layout_data.delivery_time_range.display} planning ETA</small><ArrowRight/></Link>)}</div></div></section><FinalCTA/></Layout>
 }
 
 function CityPage({ city }: { city: City }) {
   const p = city.page_layout_data
   const stateSlug = slugify(city.state)
   const index = cities.findIndex((item) => item.city_slug === city.city_slug)
-  return <Layout><Breadcrumbs labels={p.breadcrumb_labels} hrefs={['/', '/service-areas/', `/service-areas/${stateSlug}/`, cityPath(city)]}/><Hero h1={p.h1} description={p.description} price={p.starting_price} eta={p.delivery_time_range.display} availability={p.availability_label} variation={index % 4} locationPage/><section className="section location-facts"><div className="shell facts"><div><Clock3/><small>Service hours</small><strong>{p.service_hours}</strong></div><div><Ruler/><small>Planning distance</small><strong>{p.delivery_distance.display}</strong></div><div><MapPin/><small>Inventory family</small><strong>Sleepers, restroom &amp; shower, laundry, and handwashing trailers</strong></div></div></section><Process/><EquipmentPlan/><PriceTable city={city}/><RentalInfo city={city}/>{p.related_incident_articles.length > 0 && <Incident city={city}/>}<Nearby city={city}/><FAQ/><FinalCTA/></Layout>
+  const location = `${city.representative_city}, ${city.state}`
+  return <Layout><Breadcrumbs labels={p.breadcrumb_labels} hrefs={['/', '/service-areas/', `/service-areas/${stateSlug}/`, cityPath(city)]}/><Hero h1={locationH1(location)} description={locationDescription(location)} price={p.starting_price} eta={p.delivery_time_range.display} availability={p.availability_label} variation={index % 4} locationPage/><section className="section location-facts"><div className="shell facts"><div><Clock3/><small>Service hours</small><strong>{p.service_hours}</strong></div><div><Ruler/><small>Planning distance</small><strong>{p.delivery_distance.display}</strong></div><div><MapPin/><small>Restroom Family</small><strong>Sleepers, restroom &amp; shower, laundry, and handwashing trailers</strong></div></div></section><RestroomFamilyOverview location={location}/><Nearby city={city}/><FinalCTA/></Layout>
 }
 
 function EquipmentPlan() {
   const e = site.service_profile.equipment
   return <section className="section equipment-plan"><div className="shell"><div className="section-head"><div><span className="eyebrow">Preparation · cooking · utilities</span><h2>The kitchen is a working system, not just a trailer.</h2></div><p>{site.inventory.family_definition}</p></div><div className="plan-grid"><article><h3>Cooking & preparation</h3><p>{e.cooking[0]}</p><p>{e.preparation[0]}</p></article><article><h3>Sanitation & dishwashing</h3><p>{e.sanitation[0]}</p><p>{site.service_profile.sanitation_plan.confirmation_note}</p></article><article><h3>Utilities & site access</h3><p>{e.utilities[0]}</p></article><article><h3>Refrigeration & storage</h3><p>{e.refrigeration[0]}</p><p>{e.storage[0]}</p></article></div></div></section>
-}
-
-function RentalInfo({ city }: { city: City }) {
-  const info = city.page_layout_data.rental_information
-  return <section className="section rental-info"><div className="shell two-col"><div><span className="eyebrow">Rental information</span><h2>What the quote confirms.</h2><p>{city.availability_note}</p></div><dl>{Object.entries(info).map(([key, value]) => <div key={key}><dt>{key.replaceAll('_', ' ')}</dt><dd>{value}</dd></div>)}</dl></div></section>
-}
-
-function Incident({ city }: { city: City }) {
-  const article = city.page_layout_data.related_incident_articles[0]
-  return <section className="section incident"><div className="shell incident-inner"><div><span className="eyebrow">Local continuity context</span><h2>Why temporary capacity belongs in a recovery plan.</h2><p>This city-specific source is provided as planning context only. It does not claim that the organization named in the article used this rental service.</p></div><article><time dateTime={article.date}>{new Date(`${article.date}T00:00:00`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time><h3>{article.title}</h3><a href={article.source_url} target="_blank" rel="noreferrer">Read the assigned source <ArrowRight/></a></article></div></section>
 }
 
 function Nearby({ city }: { city: City }) {

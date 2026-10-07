@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cities, citiesForState, cityPath, inventoryDetailPages, restroomFamilyServices, routes, services, site, statePages, supportingServices } from '../src/data'
+import { cities, citiesForState, cityPath, inventoryDetailPages, locationDescription, locationH1, restroomFamilyServices, routes, services, site, statePages, supportingServices } from '../src/data'
 
 describe('authoritative site data', () => {
   it('includes all states, cities, and nine services', () => {
@@ -15,6 +15,13 @@ describe('authoritative site data', () => {
     expect(supportingServices.map((service) => service.slug)).toEqual([
       'mobile-kitchen-trailers', 'dishwashing-trailers', 'refrigeration-trailers'
     ])
+  })
+  it('builds restroom-focused location headings and descriptions', () => {
+    expect(locationH1('Austin, Texas')).toBe('Austin, Texas Mobile Restroom Trailer Rentals for Short-Term or Long-Term Use')
+    const description = locationDescription('Austin, Texas')
+    expect(description).toContain('mobile restroom trailers in Austin, Texas')
+    expect(description).toContain('sleeper trailers, restroom and shower trailers, laundry trailers, and handwashing trailers')
+    expect(description).not.toMatch(/kitchen|dishwash|refrigerat/i)
   })
   it('links every state to every matching city slug', () => {
     for (const state of statePages) {

@@ -17,3 +17,4 @@
 ## 2026-10-08
 
 - Applied the owner’s corrected taxonomy site-wide: the Restroom Family is sleepers, restroom and shower, laundry, and handwashing trailers. Kitchen, dishwashing, and refrigeration are displayed as supporting inventory without altering the supplied location JSON or its pricing and ETA facts.
+- Replaced JSON-provided kitchen-led state and city H1/description presentation with deterministic location-specific restroom copy. Removed kitchen equipment, kitchen pricing tables, kitchen rental information, and general FAQs from state/city templates while preserving their URL slugs, breadcrumbs, location facts, ETA, availability, articles, and nearby-area links.

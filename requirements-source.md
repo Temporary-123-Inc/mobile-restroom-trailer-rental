@@ -13,6 +13,7 @@
 - U011: Add an integration-ready sticky lead form with state, city, all nine services, timing, contact details, and project notes; future delivery may use Resend or Glide. Source: owner message, 2026-10-07.
 - U012: Repair the contact-page form spacing and layout, use `1-888-385-9424` as the site CTA number, and mention emergency/24/7 support. Source: owner message, 2026-10-07.
 - U013: Correct the Restroom Family to sleepers, restroom and shower, laundry, and handwashing trailers. This supersedes U004 wherever it defined the primary family taxonomy. Source: owner correction, 2026-10-08.
+- U014: Refocus every state and city page on mobile restroom trailer rentals and the four Restroom Family categories only. Use a location-led short-term/long-term H1 and a restroom-focused description that still names sleepers, restroom and shower, laundry, and handwashing trailers. Source: owner message, 2026-10-08.
 
 ## Instruction precedence and conflicts
 

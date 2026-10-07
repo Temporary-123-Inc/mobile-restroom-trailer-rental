@@ -46,6 +46,8 @@ export const cityBySlug = (slug: string) => cities.find((item) => item.page_layo
 export const citiesForState = (state: string) => cities.filter((item) => item.state === state)
 export const cityPath = (city: City) => `/${slugify(city.state)}/${city.page_layout_data.slug}/`
 export const statePath = (state: string) => `/service-areas/${slugify(state)}/`
+export const locationH1 = (location: string) => `${location} Mobile Restroom Trailer Rentals for Short-Term or Long-Term Use`
+export const locationDescription = (location: string) => `Rent mobile restroom trailers in ${location} for short-term or long-term projects. Our Restroom Family includes sleeper trailers, restroom and shower trailers, laundry trailers, and handwashing trailers. Request current availability, delivery timing, setup details, and a location-specific quote.`
 
 export const services = [
   { slug: 'restroom-trailers', name: 'Restroom trailers', family: 'Restroom Family', image: '/images/restroom.webp', description: 'Temporary restroom facilities available by request, with configuration, site requirements, and current availability confirmed in the quote.' },
