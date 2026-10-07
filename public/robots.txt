@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mobile-restroom-trailer-rental.com/sitemap.xml
