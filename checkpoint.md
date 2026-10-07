@@ -3,7 +3,7 @@
 - Target: `https://mobile-restroom-trailer-rental.com/`
 - Target repository: `https://github.com/Temporary-123-Inc/mobile-restroom-trailer-rental.git`
 - Template source: `https://github.com/Temporary-123-Inc/portable-food-bank.com.git`, inspected at `69f6dfb`
-- Phase: site-36 restroom JSON integrated across all state/city pages and locally verified; deployment update pending
+- Phase: site-specific visual redesign implemented and locally verified; production deployment pending
 - Completed: source inspection, JSON/CSV intake, template adaptation, exact JSON location rendering, typecheck, lint, tests, production build, 325-page rendered scan, GitHub push, Vercel production deployment, representative Vercel route smoke tests
 - Revision: `70f77da63308942ceb0572e926f7fba1b45fc67c`
 - Vercel deployment: `dpl_FfPDad1wuKvzrwCcRc5qMocDCnZw`
@@ -15,4 +15,5 @@
 - Location-page verification: all 296 rendered state/city pages use a location-specific mobile restroom H1 for short-term or long-term rentals, name all four Restroom Family categories, and contain no kitchen, dishwashing, refrigeration, or old kitchen modules in `<main>`; 9 tests pass.
 - Calculator verification: the rendered calculator exposes all 5 workbook configurations and 4 workbook rental periods, displays the $2,995 default, preserves ranges, treats the blank ADA row as quote-required, and contains no old kitchen-estimator copy; 10 tests pass.
 - Site-36 verification: all 296 rendered location pages use restroom H1s, the $2,995 starting price, and restroom inventory data; all 246 city pages include the JSON rental terms. No location page has an old kitchen H1 or prohibited placeholder, and all 10 tests pass.
-- Next: push and deploy the form/contact release, verify production UI source, then update the apex DNS at GoDaddy/Cloudflare to the Vercel target
+- Visual verification: CSS-only redesign preserves content and routing; homepage and Austin city page were checked at desktop and 390px mobile widths. Typecheck, lint, all 10 tests, and production build pass.
+- Next: push and deploy the visual redesign, verify the production alias, then update the apex DNS at GoDaddy/Cloudflare to the Vercel target.

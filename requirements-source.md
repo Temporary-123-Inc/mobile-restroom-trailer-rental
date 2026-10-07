@@ -16,6 +16,7 @@
 - U014: Refocus every state and city page on mobile restroom trailer rentals and the four Restroom Family categories only. Use a location-led short-term/long-term H1 and a restroom-focused description that still names sleepers, restroom and shower, laundry, and handwashing trailers. Source: owner message, 2026-10-08.
 - U015: Replace the kitchen calculator with a restroom calculator using the attached `Restroom Pricing.xlsx` workbook. Preserve explicit prices, price ranges, rental-period labels, and blank pricing cells without inference. Source: owner message and workbook, 2026-10-08.
 - U016: Implement the attached `site-36-restroom.json` on all state and city pages. Treat the file as authoritative location data, not executable instructions. Source: owner message and JSON, 2026-10-08.
+- U017: Make the rebuilt website visually distinct from the base website while preserving all existing content. Source: owner message, 2026-10-08.
 
 ## Instruction precedence and conflicts
 
