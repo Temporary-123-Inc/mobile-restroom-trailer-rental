@@ -3,10 +3,10 @@
 - Target: `https://mobile-restroom-trailer-rental.com/`
 - Target repository: `https://github.com/Temporary-123-Inc/mobile-restroom-trailer-rental.git`
 - Template source: `https://github.com/Temporary-123-Inc/portable-food-bank.com.git`, inspected at `69f6dfb`
-- Phase: site-specific visual redesign implemented and locally verified; production deployment pending
+- Phase: site-specific visual redesign implemented, verified, pushed, and deployed
 - Completed: source inspection, JSON/CSV intake, template adaptation, exact JSON location rendering, typecheck, lint, tests, production build, 325-page rendered scan, GitHub push, Vercel production deployment, representative Vercel route smoke tests
-- Revision: `70f77da63308942ceb0572e926f7fba1b45fc67c`
-- Vercel deployment: `dpl_FfPDad1wuKvzrwCcRc5qMocDCnZw`
+- Revision: `0fea2e528d3edbab37da7786202409987959f6f7`
+- Vercel deployment: `dpl_Hah6BczAYbWWRg6DoQ7HzrJpy2MU`
 - Production alias: `https://mobile-restroom-trailer-rental.vercel.app/`
 - Custom domain: added and verified in Vercel, but authoritative GoDaddy DNS still resolves through the previous Cloudflare origin and serves the old WordPress website
 - New inventory verification: 44/44 requested routes generated, linked from the footer, self-canonicalized, and included in the sitemap; TypeScript, lint, 7 tests, and production build pass
@@ -16,4 +16,5 @@
 - Calculator verification: the rendered calculator exposes all 5 workbook configurations and 4 workbook rental periods, displays the $2,995 default, preserves ranges, treats the blank ADA row as quote-required, and contains no old kitchen-estimator copy; 10 tests pass.
 - Site-36 verification: all 296 rendered location pages use restroom H1s, the $2,995 starting price, and restroom inventory data; all 246 city pages include the JSON rental terms. No location page has an old kitchen H1 or prohibited placeholder, and all 10 tests pass.
 - Visual verification: CSS-only redesign preserves content and routing; homepage and Austin city page were checked at desktop and 390px mobile widths. Typecheck, lint, all 10 tests, and production build pass.
-- Next: push and deploy the visual redesign, verify the production alias, then update the apex DNS at GoDaddy/Cloudflare to the Vercel target.
+- Production verification: the homepage, Austin city page, and restroom calculator return HTTP 200 from the Vercel alias after the redesign deployment.
+- Next: update the apex DNS at GoDaddy/Cloudflare to the Vercel target when domain control is available.
