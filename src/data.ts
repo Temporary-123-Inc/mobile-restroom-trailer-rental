@@ -100,14 +100,78 @@ export const trailerOptions: Record<string, { name: string; image: string }[]> =
 export const kitchenPrices = raw.service_profile.pricing.size_surcharges
 export const refrigeratorPrices = raw.service_profile.pricing.temporary_refrigerator_trailer.size_prices
 
+export type InventoryDetailPage = {
+  slug: string
+  name: string
+  family: string
+  parentService: string
+  image: string
+  description: string
+}
+
+const inventoryPage = (slug: string, name: string, family: string, parentService: string, image: string): InventoryDetailPage => ({
+  slug, name, family, parentService, image,
+  description: `${name} is presented as a temporary rental option within the ${family.toLowerCase()} inventory. Configuration, utilities, placement, access, rental term, delivery, setup, and current availability are confirmed through the project quote.`
+})
+
+export const inventoryDetailPages: InventoryDetailPage[] = [
+  inventoryPage('12ft-restroom-shower-combo-trailers', '12ft Restroom and Shower Combination Trailer Rentals', 'Shower and restroom combination family', 'shower-restroom-combinations', '/images/trailers/13ft-combo-3.webp'),
+  inventoryPage('12ft-shower-trailer-rental', '12ft Portable Shower Trailer Rental', 'Shower family', 'shower-trailers', '/images/shower.webp'),
+  inventoryPage('14ft-restroom-shower-combo-trailer', '14ft Restroom and Shower Combination Trailer Rental', 'Shower and restroom combination family', 'shower-restroom-combinations', '/images/trailers/13ft-combo-3.webp'),
+  inventoryPage('14ft-shower-trailer-rental', '14ft Portable Shower Trailer Rental', 'Shower family', 'shower-trailers', '/images/shower.webp'),
+  inventoryPage('20ft-mobile-sleeper-123-contractors-trailer-rental', '20ft Contractor Mobile Sleeper Trailer Rental', 'Sleeper and bunkbed family', 'sleeper-trailers', '/images/trailers/20ft-contractor-accommodation.webp'),
+  inventoryPage('20ft-mobile-sleeper-123-shared-trailer-rental', '20ft Shared Mobile Sleeper Trailer Rental', 'Sleeper and bunkbed family', 'sleeper-trailers', '/images/sleeper.webp'),
+  inventoryPage('20ft-mobile-sleeper-123-vip-trailer-rental', '20ft VIP Mobile Sleeper Trailer Rental', 'Sleeper and bunkbed family', 'sleeper-trailers', '/images/trailers/20ft-vip-accommodation.webp'),
+  inventoryPage('22ft-dishwashing-trailer-rental', '22ft Commercial Dishwashing Trailer Rental', 'Dishwashing family', 'dishwashing-trailers', '/images/trailers/22-26ft-low-temp-dish.webp'),
+  inventoryPage('24ft-dishwashing-trailer-rental', '24ft Commercial Dishwashing Trailer Rental', 'Dishwashing family', 'dishwashing-trailers', '/images/dishwashing.webp'),
+  inventoryPage('24ft-mobile-kitchen-trailer-rental', '24ft Mobile Commercial Kitchen Trailer Rental', 'Kitchen family', 'mobile-kitchen-trailers', '/images/trailers/24ft-mobile-kitchen.webp'),
+  inventoryPage('26ft-dishwashing-trailer-rental', '26ft Commercial Dishwashing Trailer Rental', 'Dishwashing family', 'dishwashing-trailers', '/images/trailers/22-26ft-low-temp-dish.webp'),
+  inventoryPage('26ft-mobile-kitchen-trailer-rental', '26ft Mobile Commercial Kitchen Trailer Rental', 'Kitchen family', 'mobile-kitchen-trailers', '/images/trailers/26ft-baby-bulk-kitchen.webp'),
+  inventoryPage('28ft-mobile-kitchen-trailer-rental', '28ft Mobile Commercial Kitchen Trailer Rental', 'Kitchen family', 'mobile-kitchen-trailers', '/images/trailers/28ft-mobile-kitchen.webp'),
+  inventoryPage('30ft-shower-trailer-rental', '30ft Portable Shower Trailer Rental', 'Shower family', 'shower-trailers', '/images/shower.webp'),
+  inventoryPage('38ft-conveyor-dishwashing-trailer-rental', '38ft Conveyor Dishwashing Trailer Rental', 'Dishwashing family', 'dishwashing-trailers', '/images/trailers/38ft-high-temp-dish.webp'),
+  inventoryPage('38ft-mobile-kitchen-trailer-rental', '38ft Mobile Commercial Kitchen Trailer Rental', 'Kitchen family', 'mobile-kitchen-trailers', '/images/trailers/38ft-mobile-kitchen.webp'),
+  inventoryPage('40ft-bulk-combo-kitchen-trailer-rental', '40ft Bulk Combination Kitchen Trailer Rental', 'Kitchen family', 'mobile-kitchen-trailers', '/images/trailers/40ft-bulk-combo-kitchen.webp'),
+  inventoryPage('40ft-bulk-kitchen-trailer-rental', '40ft Bulk Commercial Kitchen Trailer Rental', 'Kitchen family', 'mobile-kitchen-trailers', '/images/trailers/40ft-bulk-kitchen.webp'),
+  inventoryPage('40ft-combo-kitchen-trailer-rental', '40ft Combination Kitchen Trailer Rental', 'Kitchen family', 'mobile-kitchen-trailers', '/images/trailers/40ft-mobile-combo-kitchen.webp'),
+  inventoryPage('40ft-mobile-kitchen-trailer-rental', '40ft Mobile Commercial Kitchen Trailer Rental', 'Kitchen family', 'mobile-kitchen-trailers', '/images/trailers/40ft-mobile-kitchen.webp'),
+  inventoryPage('containerized-shower-unit-rental', 'Containerized Portable Shower Unit Rental', 'Shower family', 'shower-trailers', '/images/trailers/20ft-shower-container-5.webp'),
+  inventoryPage('containerized-sleeper-rental', 'Containerized Sleeper and Bunkbed Rental', 'Sleeper and bunkbed family', 'sleeper-trailers', '/images/sleeper.png'),
+  inventoryPage('customized-combo-trailer-rental', 'Customized Multiple-Use Combination Trailer Rental', 'Combination facility family', 'shower-restroom-combinations', '/images/shower-restroom.webp'),
+  inventoryPage('kitchen-office-combo-trailer-rental', 'Kitchen and Office Combination Trailer Rental', 'Combination facility family', 'mobile-kitchen-trailers', '/images/mobile-kitchen.webp'),
+  inventoryPage('kitchen-sleeper-combo-trailer-rental', 'Kitchen and Sleeper Combination Trailer Rental', 'Combination facility family', 'mobile-kitchen-trailers', '/images/trailers/40ft-mobile-combo-kitchen.webp'),
+  inventoryPage('production-center-office-combo-trailer-rental', 'Production Center and Office Combination Trailer Rental', 'Combination facility family', 'mobile-kitchen-trailers', '/images/mobile-kitchen.webp'),
+  inventoryPage('shower-restroom-combo-trailer-rental', 'Shower and Restroom Combination Trailer Rental', 'Shower and restroom combination family', 'shower-restroom-combinations', '/images/shower-restroom.webp'),
+  inventoryPage('shower-restroom-office-combo-trailer-rental', 'Shower, Restroom, and Office Combination Trailer Rental', 'Shower and restroom combination family', 'shower-restroom-combinations', '/images/trailers/combo-8-ada.webp'),
+  inventoryPage('12ft-restroom-trailer-rental', '12ft Mobile Restroom Trailer Rental', 'Restroom family', 'restroom-trailers', '/images/trailers/restroom-trailer.webp'),
+  inventoryPage('14ft-restroom-trailer-rental', '14ft Mobile Restroom Trailer Rental', 'Restroom family', 'restroom-trailers', '/images/restroom.webp'),
+  inventoryPage('24ft-laundry-trailer', '24ft Mobile Laundry Trailer Rental', 'Laundry family', 'laundry-trailers', '/images/trailers/24ft-laundry.webp'),
+  inventoryPage('30ft-laundry-trailer-rental', '30ft Mobile Laundry Trailer Rental', 'Laundry family', 'laundry-trailers', '/images/trailers/30ft-laundry-10.webp'),
+  inventoryPage('containerized-units', 'Containerized Temporary Facility Rentals', 'Containerized facility family', 'sleeper-trailers', '/images/sleeper.png'),
+  inventoryPage('deluxe-multiple-use-trailers', 'Deluxe Multiple-Use Trailer Rentals', 'Combination facility family', 'shower-restroom-combinations', '/images/shower-restroom.webp'),
+  inventoryPage('dishwashing-trailer-rental', 'Commercial Dishwashing Trailer Rentals', 'Dishwashing family', 'dishwashing-trailers', '/images/dishwashing.webp'),
+  inventoryPage('laundry-trailers', 'Mobile Laundry Trailer Rentals', 'Laundry family', 'laundry-trailers', '/images/laundry.webp'),
+  inventoryPage('mobile-kitchen-trailer', 'Mobile Commercial Kitchen Trailer Rentals', 'Kitchen family', 'mobile-kitchen-trailers', '/images/mobile-kitchen.webp'),
+  inventoryPage('office-trailer', 'Temporary Mobile Office Trailer Rental', 'Office facility family', 'mobile-kitchen-trailers', '/images/trailers/40ft-mobile-combo-kitchen.webp'),
+  inventoryPage('refrigeration-trailers', 'Refrigerated Trailer Rentals for Temporary Cold Storage', 'Refrigerator family', 'refrigeration-trailers', '/images/refrigeration.webp'),
+  inventoryPage('restroom-shower', 'Restroom and Shower Combination Trailer Rentals', 'Shower and restroom combination family', 'shower-restroom-combinations', '/images/shower-restroom.webp'),
+  inventoryPage('restroom-trailers', 'Mobile Restroom Trailer Rentals', 'Restroom family', 'restroom-trailers', '/images/restroom.webp'),
+  inventoryPage('shower-trailers', 'Portable Shower Trailer Rentals', 'Shower family', 'shower-trailers', '/images/shower.webp'),
+  inventoryPage('sleeper-trailer', 'Sleeper and Bunkbed Trailer Rentals', 'Sleeper and bunkbed family', 'sleeper-trailers', '/images/sleeper.webp'),
+  inventoryPage('stairs-and-ramps-rental-2', 'Temporary Trailer Stairs and Ramps Rental', 'Site access equipment family', 'restroom-trailers', '/images/restroom.webp')
+]
+
+export const inventoryDetailBySlug = (slug: string) => inventoryDetailPages.find((page) => page.slug === slug)
+
 export const coreRoutes = ['/', '/services/', '/service-areas/', '/rental-calculator/', '/about-us/', '/contact-us/', '/blog/', '/privacy/']
 export const serviceRoutes = services.map((service) => `/services/${service.slug}/`)
+export const inventoryDetailRoutes = inventoryDetailPages.map((page) => `/${page.slug}/`)
 export const stateRoutes = statePages.map((state) => statePath(state.state))
 export const cityRoutes = cities.map(cityPath)
 export const legacyRoutes = [
-  '/Locations.html', '/mobile-kitchen-trailer/', '/equipment-rental/mobile-kitchen-trailers/', '/portable-dishwashing-trailer-rental/',
+  '/Locations.html', '/equipment-rental/mobile-kitchen-trailers/', '/portable-dishwashing-trailer-rental/',
   '/equipment-rental/refrigeration/', '/equipment-rental/shower-trailer/', '/equipment-rental/restroom-trailers/',
   '/services/shower-restroom-combination-trailers/', '/equipment-rental/mobile-sleep-trailers/',
   '/equipment-rental/laundry-trailers/', '/equipment-rental/handwashing-stations/'
 ]
-export const routes = [...coreRoutes, ...serviceRoutes, ...stateRoutes, ...cityRoutes, ...legacyRoutes]
+export const routes = [...coreRoutes, ...serviceRoutes, ...inventoryDetailRoutes, ...stateRoutes, ...cityRoutes, ...legacyRoutes]

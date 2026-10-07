@@ -8,6 +8,7 @@
 - U006: Build all supplied state and city routes with exact JSON slugs, four deterministic hero layouts, responsive accessibility, and no bracketed placeholders. Source: owner message, 2026-10-07.
 - U007: Run build, lint, typecheck, tests, and representative route verification. Source: owner message, 2026-10-07.
 - U008: Domain Authority is 3. Provider/date were not supplied; recorded as owner-stated Moz DA for planning, unverified for formal portfolio release evidence. Source: owner message, 2026-10-07.
+- U009: Create the 44 owner-supplied inventory URLs at their exact root-level slugs using the existing rebuild template and link all of them from the footer. Source: owner message, 2026-10-07.
 
 ## Instruction precedence and conflicts
 

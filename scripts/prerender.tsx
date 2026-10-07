@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { App } from '../src/App'
-import { cityBySlug, routes, services, stateBySlug } from '../src/data'
+import { cityBySlug, inventoryDetailBySlug, routes, services, stateBySlug } from '../src/data'
 
 const dist = join(process.cwd(), 'dist')
 const template = await readFile(join(dist, 'index.html'), 'utf8')
@@ -18,6 +18,8 @@ function metadata(path: string) {
   if (path === '/rental-calculator/') return { title: 'Mobile Restroom Trailer Starting Price Estimator | Mobile Restroom Trailer Rental', description: 'Build a location-specific mobile restroom trailer starting estimate using published city pricing and planning ETA data.' }
   if (path === '/contact-us/') return { title: 'Request Mobile Restroom Trailer Availability | Mobile Restroom Trailer Rental', description: 'Prepare the project details needed for a location-specific mobile restroom trailer rental plan and quote.' }
   const bits = path.split('/').filter(Boolean)
+  const inventoryPage = inventoryDetailBySlug(bits.at(-1) || '')
+  if (inventoryPage) return { title: `${inventoryPage.name} | Mobile Restroom Trailer Rental`, description: inventoryPage.description }
   const city = cityBySlug(bits.at(-1) || '')
   if (city) return { title: `${city.page_layout_data.title} | Mobile Restroom Trailer Rental`, description: city.page_layout_data.description }
   if (path.startsWith('/service-areas/')) { const state = stateBySlug(bits.at(-1) || ''); if (state) return { title: `${state.page_title} | Mobile Restroom Trailer Rental`, description: state.description } }
@@ -47,7 +49,7 @@ for (const path of routes) {
   await writeFile(output, html)
 }
 
-const sitemapPaths = routes.filter((path) => !path.endsWith('.html') && !path.includes('/equipment-rental/') && path !== '/mobile-kitchen-trailer/' && path !== '/portable-dishwashing-trailer-rental/' && path !== '/services/shower-restroom-combination-trailers/')
+const sitemapPaths = routes.filter((path) => !path.endsWith('.html') && !path.includes('/equipment-rental/') && path !== '/portable-dishwashing-trailer-rental/' && path !== '/services/shower-restroom-combination-trailers/')
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>${updated}</lastmod></url>`).join('\n')}\n</urlset>\n`
 await writeFile(join(dist, 'sitemap.xml'), sitemap)
 await writeFile(join(process.cwd(), 'public', 'sitemap.xml'), sitemap)

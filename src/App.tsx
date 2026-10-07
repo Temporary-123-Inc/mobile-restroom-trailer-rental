@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowRight, Check, ChevronDown, ChevronLeft, ChevronRight, Clock3, MapPin, Menu, PhoneCall, Ruler, X } from 'lucide-react'
-import { cities, citiesForState, cityBySlug, cityPath, refrigeratorPrices, serviceH1, services, site, slugify, stateBySlug, statePages, statePath, trailerOptions, type City } from './data'
+import { cities, citiesForState, cityBySlug, cityPath, inventoryDetailBySlug, inventoryDetailPages, refrigeratorPrices, serviceH1, services, site, slugify, stateBySlug, statePages, statePath, trailerOptions, type City, type InventoryDetailPage } from './data'
 
 const money = (value: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value)
 const currentPath = () => typeof window === 'undefined' ? '/' : window.location.pathname
@@ -30,8 +30,13 @@ function Header() {
   </>
 }
 
+function FooterInventory() {
+  const groups = [...new Set(inventoryDetailPages.map((page) => page.family))]
+  return <div className="shell footer-inventory"><div className="footer-inventory-heading"><span className="eyebrow">Exact-path rental inventory</span><h2>Browse trailers and temporary facilities.</h2></div><div className="footer-inventory-groups">{groups.map((group) => <section key={group}><h3>{group}</h3>{inventoryDetailPages.filter((page) => page.family === group).map((page) => <Link href={`/${page.slug}/`} key={page.slug}>{page.name}</Link>)}</section>)}</div></div>
+}
+
 function Footer() {
-  return <footer><div className="shell footer-grid"><div><Link href="/" className="brand footer-brand" aria-label={`${brandName} home`}><span>Mobile Restroom</span><strong>Trailer Rental</strong></Link><p>Mobile restroom trailer rentals supported by kitchen, dishwashing, refrigeration, laundry, and sleeper facility planning.</p></div><div><h3>Explore</h3><Link href="/services/">All nine facilities</Link><Link href="/service-areas/">Service areas</Link><Link href="/rental-calculator/">Starting estimator</Link></div><div><h3>Plan</h3><Link href="/about-us/">Rental process</Link><Link href="/contact-us/">Request availability</Link><Link href="/privacy/">Privacy</Link></div><div><h3>Request a quote</h3><a className="footer-phone" href="/contact-us/">Contact our team</a><p>Pricing, route timing, site fit, configuration, and final availability are confirmed through the company quote.</p></div></div><div className="shell copyright">© 2026 Mobile Restroom Trailer Rental. All rights reserved.</div></footer>
+  return <footer><div className="shell footer-grid"><div><Link href="/" className="brand footer-brand" aria-label={`${brandName} home`}><span>Mobile Restroom</span><strong>Trailer Rental</strong></Link><p>Mobile restroom trailer rentals supported by kitchen, dishwashing, refrigeration, laundry, and sleeper facility planning.</p></div><div><h3>Explore</h3><Link href="/services/">All nine facilities</Link><Link href="/service-areas/">Service areas</Link><Link href="/rental-calculator/">Starting estimator</Link></div><div><h3>Plan</h3><Link href="/about-us/">Rental process</Link><Link href="/contact-us/">Request availability</Link><Link href="/privacy/">Privacy</Link></div><div><h3>Request a quote</h3><a className="footer-phone" href="/contact-us/">Contact our team</a><p>Pricing, route timing, site fit, configuration, and final availability are confirmed through the company quote.</p></div></div><FooterInventory/><div className="shell copyright">© 2026 Mobile Restroom Trailer Rental. All rights reserved.</div></footer>
 }
 
 function Layout({ children }: { children: React.ReactNode }) { return <><Header/><main id="main">{children}</main><Footer/></> }
@@ -150,6 +155,11 @@ function StickyQuoteForm({ serviceName }: { serviceName: string }) {
   return <aside className="sticky-quote" aria-label={`Request ${serviceName} availability`}><span className="eyebrow">Quick availability request</span><h2>Need a trailer fast?</h2><p>Share the project basics, then request current availability and configuration details.</p><form onSubmit={(event) => { event.preventDefault(); setReady(true) }}><label>Name<input name="name" autoComplete="name" required/></label><label>Phone<input name="phone" type="tel" autoComplete="tel" required/></label><label>Project location<input name="location" required/></label><label>Needed date<input name="date" type="date"/></label><label>Service<input name="service" value={serviceName} readOnly/></label><button className="button primary" type="submit">Prepare request <ArrowRight/></button>{ready && <p className="form-note" role="status">Your details are ready. This preview does not transmit forms yet; use the contact page to continue.</p>}</form></aside>
 }
 
+function InventoryDetail({ page }: { page: InventoryDetailPage }) {
+  const parent = services.find((service) => service.slug === page.parentService)
+  return <Layout><Breadcrumbs labels={['Home', 'Inventory', page.name]} hrefs={['/', '/services/', `/${page.slug}/`]}/><section className="service-hero inventory-detail-hero"><div className="shell service-hero-grid"><div><span className="eyebrow">{page.family} · temporary rental inventory</span><h1>{page.name}</h1><p>{page.description}</p><div className="hero-actions"><Link className="button primary" href="/contact-us/">Request current availability <ArrowRight/></Link>{parent && <Link className="text-link" href={`/services/${parent.slug}/`}>View {parent.name.toLowerCase()}</Link>}</div></div><img src={page.image} alt={`${page.name} inventory reference`} width="900" height="620"/></div></section><section className="section equipment-detail"><div className="shell two-col"><div><span className="eyebrow">Plan the full rental</span><h2>Confirm site fit before dispatch.</h2><p>This page preserves the requested equipment URL and uses the rebuild’s shared inventory template. Final equipment details come from the approved quote rather than assumptions based on the page name or reference image.</p></div><dl><div><dt>Configuration</dt><dd>Confirmed for the selected rental unit and project requirements.</dd></div><div><dt>Utilities</dt><dd>Power, water, drainage, fuel, and ventilation requirements are reviewed where applicable.</dd></div><div><dt>Placement</dt><dd>Delivery access, clearances, level conditions, stairs, ramps, and setup needs are reviewed before dispatch.</dd></div><div><dt>Availability</dt><dd>Current unit availability, schedule, delivery timing, and final pricing are quote-based.</dd></div></dl></div></section>{page.family === 'Kitchen family' || page.family === 'Dishwashing family' || page.family === 'Refrigerator family' ? <PriceTable/> : <Process/>}<FAQ/><FinalCTA/></Layout>
+}
+
 function ServicePage({ slug }: { slug: string }) {
   const service = services.find((item) => item.slug === slug)
   if (!service) return <NotFound/>
@@ -183,6 +193,8 @@ export function App() {
   if (normalized === '/about-us/') return <About/>
   if (normalized === '/privacy/') return <Privacy/>
   if (normalized === '/blog/') return <Blog/>
+  const inventoryMatch = normalized.match(/^\/([^/]+)\/$/)
+  if (inventoryMatch) { const inventoryPage = inventoryDetailBySlug(inventoryMatch[1]); if (inventoryPage) return <InventoryDetail page={inventoryPage}/> }
   if (aliases[normalized]) return <ServicePage slug={aliases[normalized]}/>
   const serviceMatch = normalized.match(/^\/services\/([^/]+)\/$/)
   if (serviceMatch) return <ServicePage slug={serviceMatch[1]}/>
@@ -192,6 +204,7 @@ export function App() {
   if (cityMatch) { const city = cityBySlug(cityMatch[1]); if (city) return <CityPage city={city}/> }
   return <NotFound/>
 }
+
 
 
 

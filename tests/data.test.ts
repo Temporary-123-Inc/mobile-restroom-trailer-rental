@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cities, citiesForState, cityPath, routes, services, site, statePages } from '../src/data'
+import { cities, citiesForState, cityPath, inventoryDetailPages, routes, services, site, statePages } from '../src/data'
 
 describe('authoritative site data', () => {
   it('includes all states, cities, and nine services', () => {
@@ -32,5 +32,12 @@ describe('authoritative site data', () => {
   it('assigns no incident source URL to two cities', () => {
     const urls = cities.flatMap((city) => city.page_layout_data.related_incident_articles.map((article) => article.source_url))
     expect(new Set(urls).size).toBe(urls.length)
+  })
+  it('publishes every requested exact-path inventory page', () => {
+    const expected = [
+      '12ft-restroom-shower-combo-trailers','12ft-shower-trailer-rental','14ft-restroom-shower-combo-trailer','14ft-shower-trailer-rental','20ft-mobile-sleeper-123-contractors-trailer-rental','20ft-mobile-sleeper-123-shared-trailer-rental','20ft-mobile-sleeper-123-vip-trailer-rental','22ft-dishwashing-trailer-rental','24ft-dishwashing-trailer-rental','24ft-mobile-kitchen-trailer-rental','26ft-dishwashing-trailer-rental','26ft-mobile-kitchen-trailer-rental','28ft-mobile-kitchen-trailer-rental','30ft-shower-trailer-rental','38ft-conveyor-dishwashing-trailer-rental','38ft-mobile-kitchen-trailer-rental','40ft-bulk-combo-kitchen-trailer-rental','40ft-bulk-kitchen-trailer-rental','40ft-combo-kitchen-trailer-rental','40ft-mobile-kitchen-trailer-rental','containerized-shower-unit-rental','containerized-sleeper-rental','customized-combo-trailer-rental','kitchen-office-combo-trailer-rental','kitchen-sleeper-combo-trailer-rental','production-center-office-combo-trailer-rental','shower-restroom-combo-trailer-rental','shower-restroom-office-combo-trailer-rental','12ft-restroom-trailer-rental','14ft-restroom-trailer-rental','24ft-laundry-trailer','30ft-laundry-trailer-rental','containerized-units','deluxe-multiple-use-trailers','dishwashing-trailer-rental','laundry-trailers','mobile-kitchen-trailer','office-trailer','refrigeration-trailers','restroom-shower','restroom-trailers','shower-trailers','sleeper-trailer','stairs-and-ramps-rental-2'
+    ]
+    expect(inventoryDetailPages.map((page) => page.slug)).toEqual(expected)
+    for (const slug of expected) expect(routes).toContain(`/${slug}/`)
   })
 })
