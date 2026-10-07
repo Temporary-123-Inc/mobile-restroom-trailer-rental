@@ -9,6 +9,9 @@
 - U007: Run build, lint, typecheck, tests, and representative route verification. Source: owner message, 2026-10-07.
 - U008: Domain Authority is 3. Provider/date were not supplied; recorded as owner-stated Moz DA for planning, unverified for formal portfolio release evidence. Source: owner message, 2026-10-07.
 - U009: Create the 44 owner-supplied inventory URLs at their exact root-level slugs using the existing rebuild template and link all of them from the footer. Source: owner message, 2026-10-07.
+- U010: Display the owner-supplied SAM.gov, SBA, UEI, Dun & Bradstreet, and NAICS logo strip above the footer. Source: owner image and message, 2026-10-07.
+- U011: Add an integration-ready sticky lead form with state, city, all nine services, timing, contact details, and project notes; future delivery may use Resend or Glide. Source: owner message, 2026-10-07.
+- U012: Repair the contact-page form spacing and layout, use `1-888-385-9424` as the site CTA number, and mention emergency/24/7 support. Source: owner message, 2026-10-07.
 
 ## Instruction precedence and conflicts
 

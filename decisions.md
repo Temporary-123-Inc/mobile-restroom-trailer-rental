@@ -10,3 +10,6 @@
 - Restroom imagery leads the homepage; kitchen/dishwasher/refrigerator pricing remains JSON-backed and city discounts apply only where supplied.
 - Added the 44 owner-supplied equipment/category URLs as direct pages using one shared inventory-detail shell. Unsupported dimensions, capacities, amenities, and guarantees were not inferred from slugs or images; those details remain quote-based.
 - Added every requested inventory page to a family-grouped footer directory, the prerender route list, metadata generation, and XML sitemap.
+- Added the supplied accreditation artwork as a responsive, lazy-loaded trust strip immediately above the shared footer.
+- Added a reusable state/city/service lead form in a sticky global panel and on the contact page. Submission remains local-only until Resend or Glide is configured, and the UI says so explicitly.
+- Added `1-888-385-9424` to header, homepage, contact, footer, sticky-form, and final CTA surfaces. “24/7” is limited to emergency contact support; the site still requires confirmation for inventory, delivery, dispatch, setup, and response timing.
