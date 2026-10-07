@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cities, citiesForState, cityPath, inventoryDetailPages, locationDescription, locationH1, restroomFamilyServices, restroomPricing, restroomRentalPeriods, routes, services, site, statePages, supportingServices } from '../src/data'
+import { cities, citiesForState, cityPath, inventoryDetailPages, restroomFamilyServices, restroomPricing, restroomRentalPeriods, restroomSite, routes, services, site, statePages, supportingServices } from '../src/data'
 
 describe('authoritative site data', () => {
   it('includes all states, cities, and nine services', () => {
@@ -16,12 +16,12 @@ describe('authoritative site data', () => {
       'mobile-kitchen-trailers', 'dishwashing-trailers', 'refrigeration-trailers'
     ])
   })
-  it('builds restroom-focused location headings and descriptions', () => {
-    expect(locationH1('Austin, Texas')).toBe('Austin, Texas Mobile Restroom Trailer Rentals for Short-Term or Long-Term Use')
-    const description = locationDescription('Austin, Texas')
-    expect(description).toContain('mobile restroom trailers in Austin, Texas')
-    expect(description).toContain('sleeper trailers, restroom and shower trailers, laundry trailers, and handwashing trailers')
-    expect(description).not.toMatch(/kitchen|dishwash|refrigerat/i)
+  it('uses site-36 as the authoritative restroom location source', () => {
+    expect(restroomSite.site_id).toBe('site-36')
+    expect(restroomSite.company_profile.positioning).toBe('mobile restroom trailer rental and shower-restroom combination rentals')
+    expect(statePages.every((state) => /Mobile Restroom Trailer Rental/.test(state.h1))).toBe(true)
+    expect(cities.every((city) => /Mobile Restroom Trailer Rental/.test(city.page_layout_data.h1))).toBe(true)
+    expect(cities.every((city) => /shower-restroom|restroom trailer/i.test(city.page_layout_data.description))).toBe(true)
   })
   it('preserves every supplied restroom calculator price and blank', () => {
     expect(restroomRentalPeriods.map((period) => period.label)).toEqual(['1–6 days', '8–14 days', '15 days–1 month', 'More than 3 months'])
@@ -43,14 +43,15 @@ describe('authoritative site data', () => {
       expect(city.page_layout_data.breadcrumb_labels).toEqual(['Home', 'Service Area Pages', city.state, city.representative_city])
       expect(city.page_layout_data.h1).toContain(city.representative_city)
       expect(city.page_layout_data.description.toLowerCase()).toContain(city.page_layout_data.delivery_time_range.display.toLowerCase())
-      expect(city.page_layout_data.starting_price).toBe(city.prices_after_city_discount['20_ft'])
+      expect(city.page_layout_data.starting_price).toBe(city.prices_after_city_discount['13ft_3_stalls'])
+      expect(city.page_layout_data.starting_price).toBe(2995)
     }
   })
   it('never applies city discounts to refrigerator pricing', () => {
     expect(site.service_profile.pricing.temporary_refrigerator_trailer.size_prices).toEqual({ '20_ft': 2452, '25_ft': 2952, '30_ft': 3452, '35_ft': 3952, '40_ft': 4452 })
   })
   it('contains no bracketed placeholders', () => {
-    const text = JSON.stringify(site)
+    const text = JSON.stringify(restroomSite)
     expect(text).not.toMatch(/\[(?:CONFIRM|DELIVERY|MINIMUM|SERVICE|EMERGENCY)[^\]]*\]/i)
   })
   it('assigns no incident source URL to two cities', () => {

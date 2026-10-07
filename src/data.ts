@@ -1,4 +1,5 @@
 import raw from './data/site-39.json'
+import restroomRaw from './data/site-36-restroom.json'
 
 export type Article = { title: string; date: string; source_url: string }
 export type City = {
@@ -6,8 +7,8 @@ export type City = {
   representative_city: string
   city_slug: string
   availability_note: string
-  prices_before_city_discount: Record<string, number>
-  prices_after_city_discount: Record<string, number>
+  prices_before_city_discount: Record<string, number | null>
+  prices_after_city_discount: Record<string, number | null>
   page_layout_data: {
     slug: string
     title: string
@@ -24,7 +25,16 @@ export type City = {
     inventory_family: string
     related_incident_articles: Article[]
     nearby_service_areas: string[]
-    rental_information: Record<string, string>
+    rental_information: {
+      minimum_rental: string
+      pricing_table: unknown[]
+      pricing_note: string
+      delivery_fee: string
+      setup: string
+      servicing: string
+      extensions: string
+      long_term_rental: string
+    }
   }
 }
 
@@ -38,8 +48,9 @@ export type StatePage = {
 }
 
 export const site = raw
-export const cities = raw.service_area_data as City[]
-export const statePages = raw.location_data.state_pages as StatePage[]
+export const restroomSite = restroomRaw
+export const cities = restroomRaw.service_area_data as City[]
+export const statePages = restroomRaw.location_data.state_pages as StatePage[]
 export const slugify = (value: string) => value.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 export const stateBySlug = (slug: string) => statePages.find((item) => slugify(item.state) === slug)
 export const cityBySlug = (slug: string) => cities.find((item) => item.page_layout_data.slug === slug)

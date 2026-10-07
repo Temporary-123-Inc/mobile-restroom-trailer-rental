@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { App } from '../src/App'
-import { cityBySlug, inventoryDetailBySlug, locationDescription, locationH1, routes, services, stateBySlug } from '../src/data'
+import { cityBySlug, inventoryDetailBySlug, routes, services, stateBySlug } from '../src/data'
 
 const dist = join(process.cwd(), 'dist')
 const template = await readFile(join(dist, 'index.html'), 'utf8')
@@ -21,8 +21,8 @@ function metadata(path: string) {
   const inventoryPage = inventoryDetailBySlug(bits.at(-1) || '')
   if (inventoryPage) return { title: `${inventoryPage.name} | Mobile Restroom Trailer Rental`, description: inventoryPage.description }
   const city = cityBySlug(bits.at(-1) || '')
-  if (city) { const location = `${city.representative_city}, ${city.state}`; return { title: `${locationH1(location)} | Mobile Restroom Trailer Rental`, description: locationDescription(location) } }
-  if (path.startsWith('/service-areas/')) { const state = stateBySlug(bits.at(-1) || ''); if (state) return { title: `${locationH1(state.state)} | Mobile Restroom Trailer Rental`, description: locationDescription(state.state) } }
+  if (city) return { title: `${city.page_layout_data.h1} for Short-Term or Long-Term Rentals | Mobile Restroom Trailer Rental`, description: city.page_layout_data.description }
+  if (path.startsWith('/service-areas/')) { const state = stateBySlug(bits.at(-1) || ''); if (state) return { title: `${state.h1} for Short-Term or Long-Term Rentals | Mobile Restroom Trailer Rental`, description: state.description } }
   const service = services.find((item) => item.slug === bits.at(-1))
   if (service) return { title: `${service.name} | Mobile Restroom Trailer Rental`, description: service.description }
   return { title: 'Mobile Restroom Trailer Rental | Mobile Restroom Trailer Rentals', description: 'Plan temporary mobile restroom facility capacity around phased renovations, repairs, and food-service changes.' }
