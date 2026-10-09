@@ -20,6 +20,7 @@
 - U018: Replace the site logo and favicon with the supplied `mobile-restroom-trailer-rental.webp` brand asset. Source: owner message and URL, 2026-10-10.
 - U019: Remove Resend functionality and deliver every contact/lead form except the calculator to the supplied authenticated Glide webhook. Use the actual website URL in the payload and send one test submission after deployment. Source: owner message, 2026-10-10.
 - U020: Set H1 typography to 47px on desktop and laptop views without changing tablet or mobile sizing. Source: owner message, 2026-10-10.
+- U021: Make every valid page explicitly indexable with `index, follow`, while keeping only the 404 page out of the index. Source: owner message, 2026-10-10.
 
 ## Instruction precedence and conflicts
 

@@ -3,7 +3,15 @@
   "trailingSlash": true,
   "redirects": [
     { "source": "/Locations.html", "destination": "/service-areas/", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true }
-  ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/equipment-rental/mobile-kitchen-trailers/", "destination": "/services/mobile-kitchen-trailers/", "permanent": true },
+    { "source": "/portable-dishwashing-trailer-rental/", "destination": "/services/dishwashing-trailers/", "permanent": true },
+    { "source": "/equipment-rental/refrigeration/", "destination": "/services/refrigeration-trailers/", "permanent": true },
+    { "source": "/equipment-rental/shower-trailer/", "destination": "/services/shower-trailers/", "permanent": true },
+    { "source": "/equipment-rental/restroom-trailers/", "destination": "/services/restroom-trailers/", "permanent": true },
+    { "source": "/services/shower-restroom-combination-trailers/", "destination": "/services/shower-restroom-combinations/", "permanent": true },
+    { "source": "/equipment-rental/mobile-sleep-trailers/", "destination": "/services/sleeper-trailers/", "permanent": true },
+    { "source": "/equipment-rental/laundry-trailers/", "destination": "/services/laundry-trailers/", "permanent": true },
+    { "source": "/equipment-rental/handwashing-stations/", "destination": "/services/handwashing-trailers/", "permanent": true }
+  ]
 }

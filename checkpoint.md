@@ -3,7 +3,7 @@
 - Target: `https://mobile-restroom-trailer-rental.com/`
 - Target repository: `https://github.com/Temporary-123-Inc/mobile-restroom-trailer-rental.git`
 - Template source: `https://github.com/Temporary-123-Inc/portable-food-bank.com.git`, inspected at `69f6dfb`
-- Phase: desktop/laptop H1 sizing adjusted to 47px; deployment pending
+- Phase: site-wide indexability and true-404 handling implemented; verification and deployment pending
 - Completed: source inspection, JSON/CSV intake, template adaptation, exact JSON location rendering, typecheck, lint, tests, production build, 325-page rendered scan, GitHub push, Vercel production deployment, representative Vercel route smoke tests
 - Revision: `1aacab0c9c38a86965290aa89f20427191a3187c`
 - Vercel deployment: `dpl_5uHCvubVbhnVYG962g6Pj9ietvtH`
@@ -20,4 +20,5 @@
 - Brand asset verification: the supplied WebP is stored locally and rendered in the shared header/footer; generated HTML references it as both favicon and Apple touch icon. Typecheck, lint, all 10 tests, and production build pass.
 - Glide integration verification: shared contact/sticky forms and service-page quick forms post the requested data schema to `/api/contact`; the calculator remains non-transmitting. Server validation, origin rejection, consent enforcement, canonical URL mapping, and bearer-authenticated forwarding pass 4 focused tests; all 14 project tests pass.
 - Production Glide verification: the live contact form renders the complete lead schema and consent control. A synthetic record labeled `TEST - Codex deployment verification` was submitted through the production `/api/contact` endpoint on 2026-10-10 and returned HTTP 200 with `{"ok":true}`; its canonical source URL was `https://mobile-restroom-trailer-rental.com/contact-us/`.
+- Indexability verification: the production build emits 357 canonical HTML pages and a 357-URL sitemap. Every canonical page has explicit `index, follow` and a canonical tag; none contains `noindex`. The generated 404 alone has `noindex, follow` and no canonical. Ten legacy aliases are configured as direct permanent redirects and are absent from both generated HTML and the sitemap. Typecheck, lint, all 14 tests, and production build pass.
 - Next: update the apex DNS at GoDaddy/Cloudflare to the Vercel target when domain control is available.

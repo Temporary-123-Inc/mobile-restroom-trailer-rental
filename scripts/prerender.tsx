@@ -8,8 +8,20 @@ import { cityBySlug, inventoryDetailBySlug, routes, services, stateBySlug } from
 const dist = join(process.cwd(), 'dist')
 const template = await readFile(join(dist, 'index.html'), 'utf8')
 const origin = 'https://mobile-restroom-trailer-rental.com'
-const updated = '2026-10-06'
+const updated = '2026-10-10'
 const escape = (value: string) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;')
+const redirectPaths = new Set([
+  '/Locations.html',
+  '/equipment-rental/mobile-kitchen-trailers/',
+  '/portable-dishwashing-trailer-rental/',
+  '/equipment-rental/refrigeration/',
+  '/equipment-rental/shower-trailer/',
+  '/equipment-rental/restroom-trailers/',
+  '/services/shower-restroom-combination-trailers/',
+  '/equipment-rental/mobile-sleep-trailers/',
+  '/equipment-rental/laundry-trailers/',
+  '/equipment-rental/handwashing-stations/',
+])
 
 function metadata(path: string) {
   if (path === '/') return { title: 'Mobile Restroom Trailer Rentals | Mobile Restroom Trailer Rental', description: 'Nationwide Restroom Family rentals including sleepers, restroom and shower, laundry, and handwashing trailers, with supporting facility options.' }
@@ -29,6 +41,7 @@ function metadata(path: string) {
 }
 
 for (const path of routes) {
+  if (redirectPaths.has(path)) continue
   Object.defineProperty(globalThis, 'window', { value: { location: { pathname: path }, addEventListener() {}, removeEventListener() {}, scrollTo() {} }, configurable: true })
   Object.defineProperty(globalThis, 'history', { value: { pushState() {} }, configurable: true })
   const app = renderToString(<App/>).replace(/<link rel="preload" as="image"[^>]*\/>/g, '')
@@ -49,11 +62,16 @@ for (const path of routes) {
   await writeFile(output, html)
 }
 
-const sitemapPaths = routes.filter((path) => !path.endsWith('.html') && !path.includes('/equipment-rental/') && path !== '/portable-dishwashing-trailer-rental/' && path !== '/services/shower-restroom-combination-trailers/')
+const sitemapPaths = routes.filter((path) => !redirectPaths.has(path))
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPaths.map((path) => `  <url><loc>${origin}${path}</loc><lastmod>${updated}</lastmod></url>`).join('\n')}\n</urlset>\n`
 await writeFile(join(dist, 'sitemap.xml'), sitemap)
 await writeFile(join(process.cwd(), 'public', 'sitemap.xml'), sitemap)
 
-const notFoundTemplate = template.replace('<!--app-html-->', renderToString(<App/>)).replace(/<title>.*?<\/title>/, '<title>Page not found | Mobile Restroom Trailer Rental</title>')
+Object.defineProperty(globalThis, 'window', { value: { location: { pathname: '/404/' }, addEventListener() {}, removeEventListener() {}, scrollTo() {} }, configurable: true })
+const notFoundTemplate = template
+  .replace('<!--app-html-->', renderToString(<App/>).replace(/<link rel="preload" as="image"[^>]*\/>/g, ''))
+  .replace(/<title>.*?<\/title>/, '<title>Page not found | Mobile Restroom Trailer Rental</title>')
+  .replace('<meta name="robots" content="index, follow" />', '<meta name="robots" content="noindex, follow" />')
+  .replace(/\s*<link rel="canonical" href=".*?" \/>/, '')
 await writeFile(join(dist, '404.html'), notFoundTemplate)
 
