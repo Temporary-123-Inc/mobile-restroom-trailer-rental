@@ -201,3 +201,8 @@ footer{background:#0c2724;border-top:8px solid var(--orange)}
 .footer-brand.logo-brand{width:116px;height:116px;padding:4px;background:transparent}
 .footer-brand.logo-brand img{width:108px;height:108px;object-fit:contain}
 @media(max-width:720px){.brand.logo-brand{width:64px;height:60px}.brand.logo-brand img{width:60px;height:60px}.footer-brand.logo-brand{width:104px;height:104px}.footer-brand.logo-brand img{width:98px;height:98px}}
+.form-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.consent-field{display:flex!important;align-items:flex-start;gap:10px;text-transform:none!important;letter-spacing:0!important;line-height:1.45}
+.consent-field input{width:18px!important;height:18px!important;min-height:18px!important;margin:2px 0 0!important;flex:0 0 auto}
+.button:disabled{cursor:wait;opacity:.68}
+.form-error{color:#9d261d!important}

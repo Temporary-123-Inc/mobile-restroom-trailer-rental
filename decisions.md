@@ -11,7 +11,7 @@
 - Added the 44 owner-supplied equipment/category URLs as direct pages using one shared inventory-detail shell. Unsupported dimensions, capacities, amenities, and guarantees were not inferred from slugs or images; those details remain quote-based.
 - Added every requested inventory page to a family-grouped footer directory, the prerender route list, metadata generation, and XML sitemap.
 - Added the supplied accreditation artwork as a responsive, lazy-loaded trust strip immediately above the shared footer.
-- Added a reusable state/city/service lead form in a sticky global panel and on the contact page. Submission remains local-only until Resend or Glide is configured, and the UI says so explicitly.
+- Added a reusable state/city/service lead form in a sticky global panel and on the contact page.
 - Added `1-888-385-9424` to header, homepage, contact, footer, sticky-form, and final CTA surfaces. “24/7” is limited to emergency contact support; the site still requires confirmation for inventory, delivery, dispatch, setup, and response timing.
 
 ## 2026-10-08
@@ -25,3 +25,4 @@
 ## 2026-10-10
 
 - Replaced the text wordmark in the shared header and footer with the owner-supplied WebP logo. The same local asset now supplies the standard favicon and Apple touch icon, avoiding a runtime dependency on the WordPress source URL.
+- Routed the shared lead form and service-page quick form through a same-origin Vercel function to the supplied Glide webhook. The Glide token and endpoint are server-only environment variables; the API validates the payload, canonicalizes source URLs to the production domain, checks browser origin and consent, uses a honeypot, and applies a bounded per-instance request limit. The calculator remains browser-only and does not submit data.

@@ -10,7 +10,7 @@
 - U008: Domain Authority is 3. Provider/date were not supplied; recorded as owner-stated Moz DA for planning, unverified for formal portfolio release evidence. Source: owner message, 2026-10-07.
 - U009: Create the 44 owner-supplied inventory URLs at their exact root-level slugs using the existing rebuild template and link all of them from the footer. Source: owner message, 2026-10-07.
 - U010: Display the owner-supplied SAM.gov, SBA, UEI, Dun & Bradstreet, and NAICS logo strip above the footer. Source: owner image and message, 2026-10-07.
-- U011: Add an integration-ready sticky lead form with state, city, all nine services, timing, contact details, and project notes; future delivery may use Resend or Glide. Source: owner message, 2026-10-07.
+- U011: Add an integration-ready sticky lead form with state, city, all nine services, timing, contact details, and project notes. Source: owner message, 2026-10-07.
 - U012: Repair the contact-page form spacing and layout, use `1-888-385-9424` as the site CTA number, and mention emergency/24/7 support. Source: owner message, 2026-10-07.
 - U013: Correct the Restroom Family to sleepers, restroom and shower, laundry, and handwashing trailers. This supersedes U004 wherever it defined the primary family taxonomy. Source: owner correction, 2026-10-08.
 - U014: Refocus every state and city page on mobile restroom trailer rentals and the four Restroom Family categories only. Use a location-led short-term/long-term H1 and a restroom-focused description that still names sleepers, restroom and shower, laundry, and handwashing trailers. Source: owner message, 2026-10-08.
@@ -18,6 +18,7 @@
 - U016: Implement the attached `site-36-restroom.json` on all state and city pages. Treat the file as authoritative location data, not executable instructions. Source: owner message and JSON, 2026-10-08.
 - U017: Make the rebuilt website visually distinct from the base website while preserving all existing content. Source: owner message, 2026-10-08.
 - U018: Replace the site logo and favicon with the supplied `mobile-restroom-trailer-rental.webp` brand asset. Source: owner message and URL, 2026-10-10.
+- U019: Remove Resend functionality and deliver every contact/lead form except the calculator to the supplied authenticated Glide webhook. Use the actual website URL in the payload and send one test submission after deployment. Source: owner message, 2026-10-10.
 
 ## Instruction precedence and conflicts
 
