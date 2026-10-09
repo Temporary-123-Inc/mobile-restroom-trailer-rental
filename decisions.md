@@ -26,3 +26,4 @@
 
 - Replaced the text wordmark in the shared header and footer with the owner-supplied WebP logo. The same local asset now supplies the standard favicon and Apple touch icon, avoiding a runtime dependency on the WordPress source URL.
 - Routed the shared lead form and service-page quick form through a same-origin Vercel function to the supplied Glide webhook. The Glide token and endpoint are server-only environment variables; the API validates the payload, canonicalizes source URLs to the production domain, checks browser origin and consent, uses a honeypot, and applies a bounded per-instance request limit. The calculator remains browser-only and does not submit data.
+- Capped every H1 variant at 47px for viewport widths of 901px and above. Existing responsive H1 rules remain active for tablet and mobile widths.

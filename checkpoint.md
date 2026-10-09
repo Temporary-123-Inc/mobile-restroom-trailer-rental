@@ -3,7 +3,7 @@
 - Target: `https://mobile-restroom-trailer-rental.com/`
 - Target repository: `https://github.com/Temporary-123-Inc/mobile-restroom-trailer-rental.git`
 - Template source: `https://github.com/Temporary-123-Inc/portable-food-bank.com.git`, inspected at `69f6dfb`
-- Phase: authenticated Glide lead delivery implemented, deployed, and verified
+- Phase: desktop/laptop H1 sizing adjusted to 47px; deployment pending
 - Completed: source inspection, JSON/CSV intake, template adaptation, exact JSON location rendering, typecheck, lint, tests, production build, 325-page rendered scan, GitHub push, Vercel production deployment, representative Vercel route smoke tests
 - Revision: `1aacab0c9c38a86965290aa89f20427191a3187c`
 - Vercel deployment: `dpl_5uHCvubVbhnVYG962g6Pj9ietvtH`

@@ -206,3 +206,4 @@ footer{background:#0c2724;border-top:8px solid var(--orange)}
 .consent-field input{width:18px!important;height:18px!important;min-height:18px!important;margin:2px 0 0!important;flex:0 0 auto}
 .button:disabled{cursor:wait;opacity:.68}
 .form-error{color:#9d261d!important}
+@media(min-width:901px){h1,.home-hero h1,.location-hero h1{font-size:47px}}
