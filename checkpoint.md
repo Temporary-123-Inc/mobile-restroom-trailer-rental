@@ -3,10 +3,10 @@
 - Target: `https://mobile-restroom-trailer-rental.com/`
 - Target repository: `https://github.com/Temporary-123-Inc/mobile-restroom-trailer-rental.git`
 - Template source: `https://github.com/Temporary-123-Inc/portable-food-bank.com.git`, inspected at `69f6dfb`
-- Phase: authenticated Glide lead delivery implemented and locally verified; deployment pending
+- Phase: authenticated Glide lead delivery implemented, deployed, and verified
 - Completed: source inspection, JSON/CSV intake, template adaptation, exact JSON location rendering, typecheck, lint, tests, production build, 325-page rendered scan, GitHub push, Vercel production deployment, representative Vercel route smoke tests
-- Revision: `0fea2e528d3edbab37da7786202409987959f6f7`
-- Vercel deployment: `dpl_Hah6BczAYbWWRg6DoQ7HzrJpy2MU`
+- Revision: `1aacab0c9c38a86965290aa89f20427191a3187c`
+- Vercel deployment: `dpl_5uHCvubVbhnVYG962g6Pj9ietvtH`
 - Production alias: `https://mobile-restroom-trailer-rental.vercel.app/`
 - Custom domain: added and verified in Vercel, but authoritative GoDaddy DNS still resolves through the previous Cloudflare origin and serves the old WordPress website
 - New inventory verification: 44/44 requested routes generated, linked from the footer, self-canonicalized, and included in the sitemap; TypeScript, lint, 7 tests, and production build pass
@@ -19,4 +19,5 @@
 - Production verification: the homepage, Austin city page, and restroom calculator return HTTP 200 from the Vercel alias after the redesign deployment.
 - Brand asset verification: the supplied WebP is stored locally and rendered in the shared header/footer; generated HTML references it as both favicon and Apple touch icon. Typecheck, lint, all 10 tests, and production build pass.
 - Glide integration verification: shared contact/sticky forms and service-page quick forms post the requested data schema to `/api/contact`; the calculator remains non-transmitting. Server validation, origin rejection, consent enforcement, canonical URL mapping, and bearer-authenticated forwarding pass 4 focused tests; all 14 project tests pass.
+- Production Glide verification: the live contact form renders the complete lead schema and consent control. A synthetic record labeled `TEST - Codex deployment verification` was submitted through the production `/api/contact` endpoint on 2026-10-10 and returned HTTP 200 with `{"ok":true}`; its canonical source URL was `https://mobile-restroom-trailer-rental.com/contact-us/`.
 - Next: update the apex DNS at GoDaddy/Cloudflare to the Vercel target when domain control is available.
