@@ -195,3 +195,9 @@ footer{background:#0c2724;border-top:8px solid var(--orange)}
 :focus-visible{outline-color:#0b6aa7}
 @media(max-width:900px){.hero-rings{opacity:.45}.calculator-grid,.process-grid{clip-path:none}.location-hero h1{font-size:clamp(2.55rem,7vw,4.3rem)}}
 @media(max-width:720px){.header{height:70px}.nav{top:70px}.home-hero{padding-top:42px}.home-hero h1{font-size:clamp(3rem,15vw,4.7rem)}.circle-image{clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px))}.hero-family-rail{border-inline:0}.service-card,.trailer-card,.all-states article,.city-grid a,.nearby-links a{clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}.metric-grid{box-shadow:4px 4px 0 var(--orange)}}
+
+.brand.logo-brand{width:82px;height:68px;padding:2px;border:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.brand.logo-brand img{width:68px;height:68px;object-fit:contain}
+.footer-brand.logo-brand{width:116px;height:116px;padding:4px;background:transparent}
+.footer-brand.logo-brand img{width:108px;height:108px;object-fit:contain}
+@media(max-width:720px){.brand.logo-brand{width:64px;height:60px}.brand.logo-brand img{width:60px;height:60px}.footer-brand.logo-brand{width:104px;height:104px}.footer-brand.logo-brand img{width:98px;height:98px}}

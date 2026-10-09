@@ -3,7 +3,7 @@
 - Target: `https://mobile-restroom-trailer-rental.com/`
 - Target repository: `https://github.com/Temporary-123-Inc/mobile-restroom-trailer-rental.git`
 - Template source: `https://github.com/Temporary-123-Inc/portable-food-bank.com.git`, inspected at `69f6dfb`
-- Phase: site-specific visual redesign implemented, verified, pushed, and deployed
+- Phase: supplied logo and favicon implemented and locally verified; deployment pending
 - Completed: source inspection, JSON/CSV intake, template adaptation, exact JSON location rendering, typecheck, lint, tests, production build, 325-page rendered scan, GitHub push, Vercel production deployment, representative Vercel route smoke tests
 - Revision: `0fea2e528d3edbab37da7786202409987959f6f7`
 - Vercel deployment: `dpl_Hah6BczAYbWWRg6DoQ7HzrJpy2MU`
@@ -17,4 +17,5 @@
 - Site-36 verification: all 296 rendered location pages use restroom H1s, the $2,995 starting price, and restroom inventory data; all 246 city pages include the JSON rental terms. No location page has an old kitchen H1 or prohibited placeholder, and all 10 tests pass.
 - Visual verification: CSS-only redesign preserves content and routing; homepage and Austin city page were checked at desktop and 390px mobile widths. Typecheck, lint, all 10 tests, and production build pass.
 - Production verification: the homepage, Austin city page, and restroom calculator return HTTP 200 from the Vercel alias after the redesign deployment.
+- Brand asset verification: the supplied WebP is stored locally and rendered in the shared header/footer; generated HTML references it as both favicon and Apple touch icon. Typecheck, lint, all 10 tests, and production build pass.
 - Next: update the apex DNS at GoDaddy/Cloudflare to the Vercel target when domain control is available.

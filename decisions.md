@@ -21,3 +21,7 @@
 - Rebuilt the calculator around the attached restroom workbook: five shower-restroom configurations and four workbook-defined rental periods. Numeric cells render as prices, textual ranges render as normalized currency ranges, and the fully blank 3-stall + 1 ADA row renders as “Quote required.” Location remains a planning input but does not alter the workbook price.
 - Replaced the location data source with `site-36-restroom.json` after confirming an exact 246/246 city-slug match, 50 states, no duplicate slugs, no reused incident URLs, and no prohibited placeholders. State/city pages now display the JSON restroom H1/description, $2,995 starting price, restroom inventory wording, ETA/distance, service hours, rental terms, restroom process, FAQs, assigned article, and nearby areas. The earlier short-/long-term H1 requirement is retained as a suffix.
 - Differentiated the site from its base template through a CSS-only field-operations visual system: deep-pine and signal-amber colors, condensed display typography, technical grid texture, clipped-corner panels, squared controls, asymmetric hero composition, and a structured dark footer. Page content, routing, and data remained unchanged.
+
+## 2026-10-10
+
+- Replaced the text wordmark in the shared header and footer with the owner-supplied WebP logo. The same local asset now supplies the standard favicon and Apple touch icon, avoiding a runtime dependency on the WordPress source URL.
