@@ -29,3 +29,7 @@
 - Capped every H1 variant at 47px for viewport widths of 901px and above. Existing responsive H1 rules remain active for tablet and mobile widths.
 - Added an explicit `index, follow` robots directive to every prerendered canonical page and a `noindex, follow` directive to the generated 404 document. Removed the SPA catch-all rewrite because every published route is statically prerendered; this lets unknown paths return the generated 404 response instead of a soft-404 homepage response.
 - Consolidated 10 legacy/alternate routes into direct permanent redirects to their preferred service or directory URL. These aliases are no longer emitted as indexable HTML or included in the sitemap, keeping the indexable HTML inventory aligned one-to-one with the canonical sitemap.
+
+## 2026-10-14
+
+- Added the supplied Google Search Console ownership token as `/googleb6e223cc5eb6fe49.html`. The download suffix `(3)` was omitted because Google verifies the exact filename declared inside the token file. The verification file is not included in the XML sitemap.
